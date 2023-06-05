@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if(i){
                     bienvenido.setVisibility(v.INVISIBLE);
+                    //daaaa
                     i=false;
                 }else{
                     bienvenido.setVisibility(v.VISIBLE);

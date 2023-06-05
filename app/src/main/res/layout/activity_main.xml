@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/backgroundmarket"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/txvBienvenido"
+        android:layout_width="355dp"
+        android:layout_height="74dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginLeft="28dp"
+        android:layout_marginTop="444dp"
+        android:gravity="center"
+        android:text="Bienvenido"
+        android:textColor="@color/white"
+        android:textSize="56sp"
+        android:textStyle="italic"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnIngreso"
+        android:layout_width="248dp"
+        android:layout_height="57dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginLeft="80dp"
+        android:layout_marginTop="584dp"
+        android:text="Ingresar"
+        android:textStyle="italic"
+        app:backgroundTint="#53B175"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="TouchTargetSizeCheck" />
+</androidx.constraintlayout.widget.ConstraintLayout>

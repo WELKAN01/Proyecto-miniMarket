@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.annotation.SuppressLint;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
@@ -29,7 +31,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if(i){
                     bienvenido.setVisibility(v.INVISIBLE);
-                    //daaaa
+                    Intent intent=new Intent(v.getContext(), dashboardActivity.class);
+                    startActivity(intent);
                     i=false;
                 }else{
                     bienvenido.setVisibility(v.VISIBLE);

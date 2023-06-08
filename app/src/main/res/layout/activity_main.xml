@@ -13,7 +13,7 @@
         android:layout_height="74dp"
         android:layout_marginStart="28dp"
         android:layout_marginLeft="28dp"
-        android:layout_marginTop="444dp"
+        android:layout_marginTop="468dp"
         android:gravity="center"
         android:text="Bienvenido"
         android:textColor="@color/white"

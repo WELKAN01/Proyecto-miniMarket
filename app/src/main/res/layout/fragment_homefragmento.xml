@@ -1,14 +1,199 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Homefragmento">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="home fragmento" />
+        android:layout_height="match_parent">
 
+        <LinearLayout
+            android:layout_width="103dp"
+            android:layout_height="121dp"
+            android:layout_marginTop="228dp"
+            android:layout_marginEnd="90dp"
+            android:layout_marginRight="90dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <Button
+                android:id="@+id/btnDomesticos"
+                android:layout_width="67dp"
+                android:layout_height="83dp"
+                android:layout_gravity="center"
+                android:foregroundGravity="center_horizontal"
+                android:gravity="center"
+                app:backgroundTint="#FFE8F2"
+                app:cornerRadius="45dp"
+                app:icon="@drawable/domesticos"
+                app:iconGravity="textStart"
+                app:iconPadding="0dp"
+                app:iconSize="35dp"
+                app:iconTint="#FF7EB6"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+            <TextView
+                android:id="@+id/txtdomesticos"
+                android:layout_width="match_parent"
+                android:layout_height="39dp"
+                android:gravity="center"
+                android:text="Domesticos"
+                android:textColor="#868889" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout2"
+            android:layout_width="103dp"
+            android:layout_height="121dp"
+            android:layout_marginTop="75dp"
+            android:layout_marginEnd="30dp"
+            android:layout_marginRight="30dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <Button
+                android:id="@+id/btnAlmacen"
+                android:layout_width="67dp"
+                android:layout_height="83dp"
+                android:layout_gravity="center"
+                android:foregroundGravity="center_horizontal"
+                android:gravity="center"
+                app:backgroundTint="#F3EFFA"
+                app:cornerRadius="45dp"
+                app:icon="@drawable/almacen"
+                app:iconGravity="textStart"
+                app:iconPadding="0dp"
+                app:iconSize="35dp"
+                app:iconTint="#AE80FF"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+            <TextView
+                android:id="@+id/txtAlmacen"
+                android:layout_width="match_parent"
+                android:layout_height="37dp"
+                android:gravity="center"
+                android:text="Almacen"
+                android:textColor="#868889" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="103dp"
+            android:layout_height="121dp"
+            android:layout_marginStart="25dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="75dp"
+            android:layout_marginEnd="25dp"
+            android:layout_marginRight="25dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toStartOf="@+id/linearLayout2"
+            app:layout_constraintStart_toEndOf="@+id/linearLayout"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <Button
+                android:id="@+id/btnFrutas"
+                android:layout_width="67dp"
+                android:layout_height="83dp"
+                android:layout_gravity="center"
+                android:foregroundGravity="center_horizontal"
+                android:gravity="center"
+                app:backgroundTint="#FFE9E5"
+                app:cornerRadius="45dp"
+                app:icon="@drawable/frutas"
+                app:iconGravity="textStart"
+                app:iconPadding="0dp"
+                app:iconSize="35dp"
+                app:iconTint="#F44336"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+            <TextView
+                android:id="@+id/txtfrutas"
+                android:layout_width="match_parent"
+                android:layout_height="36dp"
+                android:gravity="center"
+                android:text="Frutas"
+                android:textColor="#868889" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="103dp"
+            android:layout_height="121dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="75dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <Button
+                android:id="@+id/btnVegetales"
+                android:layout_width="67dp"
+                android:layout_height="83dp"
+                android:layout_gravity="center"
+                android:foregroundGravity="center_horizontal"
+                android:gravity="center"
+                app:backgroundTint="#E6F2EA"
+                app:cornerRadius="45dp"
+                app:icon="@drawable/vegetal"
+                app:iconGravity="textStart"
+                app:iconPadding="0dp"
+                app:iconSize="35dp"
+                app:iconTint="#28B446"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+            <TextView
+                android:id="@+id/txtvegetales"
+                android:layout_width="match_parent"
+                android:layout_height="39dp"
+                android:gravity="center"
+                android:text="Vegetales"
+                android:textColor="#868889" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="103dp"
+            android:layout_height="121dp"
+            android:layout_marginStart="90dp"
+            android:layout_marginLeft="90dp"
+            android:layout_marginTop="228dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <Button
+                android:id="@+id/btnBebidas"
+                android:layout_width="67dp"
+                android:layout_height="83dp"
+                android:layout_gravity="center"
+                android:foregroundGravity="center_horizontal"
+                android:gravity="center"
+                app:backgroundTint="#FFF6E3"
+                app:cornerRadius="45dp"
+                app:icon="@drawable/bebida"
+                app:iconGravity="textStart"
+                app:iconPadding="0dp"
+                app:iconSize="35dp"
+                app:iconTint="#FFEB3B"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+            <TextView
+                android:id="@+id/txtbebidas"
+                android:layout_width="match_parent"
+                android:layout_height="39dp"
+                android:gravity="center"
+                android:text="Bebidas"
+                android:textColor="#868889" />
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

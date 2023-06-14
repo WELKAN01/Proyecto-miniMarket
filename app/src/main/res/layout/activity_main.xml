@@ -21,21 +21,25 @@
         android:textSize="56sp"
         android:textStyle="italic"
 
+        android:visibility="visible"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/btnIngreso"
-        android:layout_width="248dp"
-        android:layout_height="57dp"
-        android:layout_marginStart="80dp"
-        android:layout_marginLeft="80dp"
-        android:layout_marginTop="584dp"
+        android:layout_width="273dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="100dp"
+        android:fontFamily="@font/abeezee"
+        android:inputType="text"
         android:text="Ingresar"
+        android:textSize="18sp"
         android:textStyle="italic"
         app:backgroundTint="#53B175"
+        app:cornerRadius="15sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         tools:ignore="TouchTargetSizeCheck" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -54,60 +58,29 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="181dp"
             android:layout_marginLeft="181dp"
-            android:layout_marginTop="131dp"
+            android:layout_marginTop="148dp"
             android:layout_marginEnd="182dp"
             android:layout_marginRight="182dp"
             android:visibility="visible"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/logo"
             tools:ignore="MissingConstraints" />
 
-        <Button
-            android:id="@+id/button"
-            android:layout_width="22dp"
-            android:layout_height="18dp"
-            android:layout_marginStart="372dp"
-            android:layout_marginLeft="372dp"
-            android:layout_marginTop="412dp"
-            android:background="@drawable/baseline_visibility_off_24"
-            android:visibility="visible"
-            app:backgroundTint="#7C7C7C"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
-
         <EditText
-            android:id="@+id/editTextTextPassword"
+            android:id="@+id/edtEmail"
             android:layout_width="388dp"
             android:layout_height="45dp"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
-            android:layout_marginBottom="288dp"
-            android:backgroundTint="#E2E2E2"
-            android:bufferType="spannable"
-            android:ems="10"
-            android:hint="Ingresa tu contraseña"
-            android:inputType="textPassword"
-            android:textColorHighlight="#FFFFFF"
-            android:textColorHint="#FFFFFF"
-            android:textStyle="italic"
-            android:visibility="visible"
-            app:guidelineUseRtl="false"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            tools:ignore="TouchTargetSizeCheck" />
-
-        <EditText
-            android:id="@+id/editTextTextEmailAddress"
-            android:layout_width="388dp"
-            android:layout_height="45dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="296dp"
+            android:layout_marginTop="396dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
             android:backgroundTint="#E2E2E2"
             android:ems="10"
+            android:fontFamily="@font/abeezee"
             android:hint="Ingresa tu email"
             android:inputType="textEmailAddress"
             android:textColor="#FFFFFF"
@@ -115,6 +88,7 @@
             android:textIsSelectable="false"
             android:textStyle="italic"
             android:visibility="visible"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="TouchTargetSizeCheck" />
@@ -125,12 +99,14 @@
             android:layout_height="33dp"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
-            android:layout_marginBottom="3dp"
+            android:layout_marginBottom="4dp"
+            android:fontFamily="@font/abeezee"
             android:gravity="center|start|left|center_vertical"
             android:text="Email"
             android:textColor="#FFFFFF"
+            android:textSize="16sp"
             android:visibility="visible"
-            app:layout_constraintBottom_toTopOf="@+id/editTextTextEmailAddress"
+            app:layout_constraintBottom_toTopOf="@+id/edtEmail"
             app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
@@ -139,13 +115,117 @@
             android:layout_height="33dp"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
-            android:layout_marginTop="23dp"
+            android:layout_marginTop="24dp"
+            android:fontFamily="@font/abeezee"
             android:gravity="center|start|center_vertical"
             android:text="Contraseña"
             android:textColor="#FFFFFF"
+            android:textSize="16sp"
             android:visibility="visible"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextTextEmailAddress" />
+            app:layout_constraintTop_toBottomOf="@+id/edtEmail" />
+
+        <TextView
+            android:id="@+id/txvOlvidar"
+            android:layout_width="156dp"
+            android:layout_height="22dp"
+            android:layout_marginStart="248dp"
+            android:layout_marginLeft="248dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="160dp"
+            android:fontFamily="@font/abeezee"
+            android:gravity="center_vertical"
+            android:text="¿olvido su contraseña?"
+            android:textColor="#53B175"
+            android:textSize="14sp"
+            android:textStyle="bold|italic"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="22dp"
+            android:layout_height="18dp"
+            android:layout_marginStart="372dp"
+            android:layout_marginLeft="372dp"
+            android:layout_marginTop="512dp"
+            android:background="@drawable/baseline_visibility_off_24"
+            android:visibility="visible"
+            app:backgroundTint="#7C7C7C"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+        <EditText
+            android:id="@+id/edtPassword"
+            android:layout_width="388dp"
+            android:layout_height="45dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="184dp"
+            android:backgroundTint="#E2E2E2"
+            android:bufferType="spannable"
+            android:ems="10"
+            android:fontFamily="@font/abeezee"
+            android:hint="Ingresa tu contraseña"
+            android:inputType="textPassword"
+            android:textColorHighlight="#FFFFFF"
+            android:textColorHint="#FFFFFF"
+            android:textStyle="italic"
+            android:visibility="visible"
+            app:guidelineUseRtl="false"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:ignore="TouchTargetSizeCheck" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="236dp"
+            android:fontFamily="@font/abeezee"
+            android:text="Ingresar"
+            android:textColor="#FFFFFF"
+            android:textSize="34sp"
+            android:textStyle="italic"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="194dp"
+            android:layout_height="23dp"
+            android:layout_marginStart="72dp"
+            android:layout_marginLeft="72dp"
+            android:layout_marginBottom="66dp"
+            android:gravity="center"
+            android:letterSpacing="0.15"
+            android:text="¿No tiene una cuenta?"
+            android:textColor="#181725"
+            android:textStyle="italic"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="76dp"
+            android:layout_height="23dp"
+            android:layout_marginEnd="69dp"
+            android:layout_marginRight="69dp"
+            android:layout_marginBottom="65dp"
+            android:gravity="center"
+            android:text="Registrate"
+            android:textColor="#53B175"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,11 +4,9 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
-
-import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,54 +14,73 @@ import android.widget.Toast;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Stack;
+
 public class dashboardActivity extends AppCompatActivity {
     FragmentTransaction fragmentTransaction;
-    Fragment principalfragment,searchfragment,carritofragment,perfilfragment;
     BottomNavigationView navigation;
     TextView titulo;
-    CharSequence nameheader;
+    Map<Integer,Fragment>fragmentMap;
+    Map<Integer,String>TittleMap;
+    Stack<Integer> fragmentStack=new Stack<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        principalfragment=new Homefragmento();
-        carritofragment=new Cartfragmento();
-        searchfragment=new Searchfragmento();
-        perfilfragment=new Perfilfragmento();
         setContentView(R.layout.activity_dashboard);
         titulo=(TextView) findViewById(R.id.txvTitulo);
         navigation=findViewById(R.id.navigationBottom);
+        fragmentMap=new HashMap<>();
+        TittleMap=new HashMap<>();
+        fragmentMap.put(R.id.home,new Homefragmento());
+        fragmentMap.put(R.id.cart,new Cartfragmento());
+        fragmentMap.put(R.id.search,new Searchfragmento());
+        fragmentMap.put(R.id.profile,new Perfilfragmento());
+        TittleMap.put(R.id.home,"Categorias");
+        TittleMap.put(R.id.cart,"Carrito");
+        TittleMap.put(R.id.search,"Busqueda");
+        TittleMap.put(R.id.profile,"Perfil");
+
         navigation.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()){
-                    case R.id.home:
-                        titulo.setText("Categorias");
-                        fragmentTransaction=getSupportFragmentManager().beginTransaction();
-                        fragmentTransaction.replace(R.id.fragmentContainerView,principalfragment);
-                        fragmentTransaction.addToBackStack(null).commit();
-                        return true;
-                    case R.id.search:
-                        titulo.setText("Busqueda");
-                        fragmentTransaction=getSupportFragmentManager().beginTransaction();
-                        fragmentTransaction.replace(R.id.fragmentContainerView,searchfragment);
-                        fragmentTransaction.addToBackStack(null).commit();
-                        return true;
-                    case R.id.cart:
-                        titulo.setText("Carrito");
-                        fragmentTransaction=getSupportFragmentManager().beginTransaction();
-                        fragmentTransaction.replace(R.id.fragmentContainerView,carritofragment);
-                        fragmentTransaction.addToBackStack(null).commit();
-
-                        return true;
-                    case R.id.profile:
-                        titulo.setText("Perfil");
-                        fragmentTransaction=getSupportFragmentManager().beginTransaction();
-                        fragmentTransaction.replace(R.id.fragmentContainerView,perfilfragment);
-                        fragmentTransaction.addToBackStack(null).commit();
-                        return true;
+                Fragment Fragmentselect=fragmentMap.get(item.getItemId());
+                String Tittleselect=TittleMap.get(item.getItemId());
+                if(Fragmentselect!=null){
+                    titulo.setText(Tittleselect);
+                    fragmentTransaction=getSupportFragmentManager().beginTransaction();
+                    fragmentTransaction.replace(R.id.fragmentContainerView,Fragmentselect);
+                    fragmentStack.push(item.getItemId());
+                    fragmentTransaction.addToBackStack(null).commit();
+                    return true;
                 }
                 return false;
             }
         });
+    }
+
+    //public Fragment getfragment(){
+    //}
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        MenuItem items;
+        if(!fragmentStack.empty()){
+            fragmentStack.pop();
+        }
+        if(fragmentStack.size()>0){
+            Integer name=fragmentStack.peek();
+            System.out.println(Arrays.asList(fragmentStack));
+            navigation.getMenu().findItem(name).setChecked(true);
+            titulo.setText(TittleMap.get(name));
+            Toast.makeText(this, ""+fragmentStack.size(), Toast.LENGTH_SHORT).show();
+        }else{
+            titulo.setText(TittleMap.get(R.id.home));
+            navigation.getMenu().findItem(R.id.home).setChecked(true);
+            Toast.makeText(this, "presiona 2 veces para salir", Toast.LENGTH_SHORT).show();
+        }
+
     }
 }

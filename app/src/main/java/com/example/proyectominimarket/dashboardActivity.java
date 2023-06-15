@@ -30,6 +30,7 @@ public class dashboardActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
+        getSupportActionBar().hide();
         titulo=(TextView) findViewById(R.id.txvTitulo);
         navigation=findViewById(R.id.navigationBottom);
         fragmentMap=new HashMap<>();

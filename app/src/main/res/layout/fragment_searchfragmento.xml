@@ -10,22 +10,40 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="0dp"
+            android:layout_height="41dp"
+            android:layout_marginStart="60dp"
+            android:layout_marginLeft="60dp"
+            android:layout_marginTop="36dp"
+            android:layout_marginEnd="60dp"
+            android:layout_marginRight="60dp"
+            android:fontFamily="@font/abeezee"
+            android:gravity="center"
+            android:text="¿Que producto buscas?"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.551"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <SearchView
-            android:layout_width="342dp"
-            android:layout_height="70dp"
-            android:layout_marginStart="34dp"
-            android:layout_marginLeft="34dp"
-            android:layout_marginTop="56dp"
-            android:layout_marginEnd="35dp"
-            android:layout_marginRight="35dp"
+            android:layout_width="0dp"
+            android:layout_height="53dp"
+            android:layout_marginStart="60dp"
+            android:layout_marginLeft="60dp"
+            android:layout_marginTop="22dp"
+            android:layout_marginEnd="60dp"
+            android:layout_marginRight="60dp"
             android:background="@drawable/searchradius"
             android:gravity="center_vertical"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toBottomOf="@+id/textView">
 
         </SearchView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </FrameLayout>

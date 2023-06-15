@@ -29,7 +29,7 @@
         android:id="@+id/btnIngreso"
         android:layout_width="273dp"
         android:layout_height="50dp"
-        android:layout_marginBottom="100dp"
+        android:layout_marginBottom="117dp"
         android:fontFamily="@font/abeezee"
         android:inputType="text"
         android:text="Ingresar"
@@ -145,7 +145,7 @@
             app:layout_constraintStart_toStartOf="parent" />
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/btnhide"
             android:layout_width="22dp"
             android:layout_height="18dp"
             android:layout_marginStart="372dp"
@@ -202,29 +202,29 @@
             android:id="@+id/textView3"
             android:layout_width="194dp"
             android:layout_height="23dp"
-            android:layout_marginStart="72dp"
-            android:layout_marginLeft="72dp"
-            android:layout_marginBottom="66dp"
+            android:layout_marginStart="70dp"
+            android:layout_marginLeft="70dp"
+            android:layout_marginTop="640dp"
             android:gravity="center"
             android:letterSpacing="0.15"
             android:text="¿No tiene una cuenta?"
             android:textColor="#181725"
             android:textStyle="italic"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/textView4"
             android:layout_width="76dp"
             android:layout_height="23dp"
-            android:layout_marginEnd="69dp"
-            android:layout_marginRight="69dp"
-            android:layout_marginBottom="65dp"
+            android:layout_marginTop="640dp"
+            android:layout_marginEnd="70dp"
+            android:layout_marginRight="70dp"
             android:gravity="center"
             android:text="Registrate"
             android:textColor="#53B175"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -6,8 +6,14 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import android.annotation.SuppressLint;
 
 import android.content.Intent;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.graphics.drawable.AnimationDrawable;
+import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.Animation;
@@ -17,7 +23,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
-    Button btningresar;
+    Button btningresar,visibility;
+    boolean Visible=true;
     TextView bienvenido;
     EditText edEmail,edPassword;
     boolean i=true;
@@ -26,9 +33,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        getSupportActionBar().hide();
         //l=findViewById(androidx.constraintlayout.widget.R.id.constraint);
         btningresar=findViewById(R.id.btnIngreso);
         bienvenido=findViewById(R.id.txvBienvenido);
+        visibility=findViewById(R.id.btnhide);
         edEmail=findViewById(R.id.edtEmail);
         edPassword=findViewById(R.id.edtPassword);
         ConstraintLayout constra=(ConstraintLayout) findViewById(R.id.constraintLayout);
@@ -60,6 +69,27 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
 
+            }
+        });
+        visibility.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("ResourceAsColor")
+            @Override
+            public void onClick(View v) {
+                if(Visible){
+                    edPassword.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+                    v.setBackgroundResource(R.drawable.baseline_visibility_24);
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                        v.setBackgroundTintList(ColorStateList.valueOf(Color.BLACK));
+                    }
+                    Visible=false;
+                }else{
+                    edPassword.setInputType(InputType.TYPE_TEXT_VARIATION_PASSWORD|InputType.TYPE_CLASS_TEXT);
+                    v.setBackgroundResource(R.drawable.baseline_visibility_off_24);
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                        v.setBackgroundTintList(ColorStateList.valueOf(Color.rgb(124,124,124)));
+                    }
+                    Visible=true;
+                }
             }
         });
     }

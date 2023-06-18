@@ -9,6 +9,15 @@ public class usuario {
     private String password;
     private String nacimiento;
 
+    public usuario() {
+    }
+
+    public usuario(String nombre, String correo, String nacimiento) {
+        this.nombre = nombre;
+        this.correo = correo;
+        this.nacimiento = nacimiento;
+    }
+
     public usuario(String nombre, String correo, String password, String nacimiento) {
         this.nombre = nombre;
         this.correo = correo;

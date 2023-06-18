@@ -78,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
                 }else{
                     if(!Email.isEmpty() && !Password.isEmpty()){
                         boolean respuesta=user.verificarusuarioyContra(u.getCorreo(),u.getPassword());
-                        if(true){
+                        if(respuesta){
                             Intent intent=new Intent(v.getContext(), dashboardActivity.class);
                             intent.putExtra("correo",u.getCorreo());
                             startActivity(intent);

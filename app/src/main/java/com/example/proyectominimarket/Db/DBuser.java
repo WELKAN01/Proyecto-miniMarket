@@ -55,19 +55,24 @@ public class DBuser extends SQLiteOpenHelper {
         }
     }
 
-    public Boolean verificarusuario(String Correo){
+    public usuario verificarusuario(String Correo){
+
         SQLiteDatabase db=this.getWritableDatabase();
-        Cursor cursor=db.rawQuery("SELECT * FROM "+TABLANAME+" WHERE 'CORREO'=? ",new String[]{Correo});
-        if(cursor.getCount()>0){
-            return true;
-        }else{
-            return false;
+        usuario user = null;
+        Cursor cursor=db.rawQuery("SELECT NOMBRE,CORREO,NACIMIENTO FROM "+TABLANAME+" WHERE CORREO=? ",new String[]{Correo});
+        if (cursor.moveToFirst()){
+            String nombre=cursor.getString(cursor.getColumnIndexOrThrow("NOMBRE"));
+            String correo=cursor.getString(cursor.getColumnIndexOrThrow("CORREO"));
+            String nacer=cursor.getString(cursor.getColumnIndexOrThrow("NACIMIENTO"));
+            user=new usuario(nombre,correo,nacer);
         }
+        cursor.close();
+        return user;
     }
 
-    public Boolean verificarusuarioyContra(String correo,String password){
+    public boolean verificarusuarioyContra(String correo,String password){
         SQLiteDatabase db=this.getWritableDatabase();
-        Cursor cursor=db.rawQuery("SELECT * FROM "+TABLANAME+" WHERE 'CORREO'=? and 'PASSWORD'=?",
+        Cursor cursor=db.rawQuery("SELECT * FROM "+TABLANAME+" WHERE CORREO=? and PASSWORD=?",
                 new String[]{correo,password});
         if(cursor.getCount()>0){
             return true;

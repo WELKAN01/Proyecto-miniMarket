@@ -22,10 +22,13 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.proyectominimarket.Db.DBuser;
+
 public class MainActivity extends AppCompatActivity {
+    DBuser user;
     Button btningresar,visibility;
     boolean Visible=true;
-    TextView bienvenido;
+    TextView bienvenido,btnRegistro;
     EditText edEmail,edPassword;
     boolean i=true;
     @SuppressLint("MissingInflatedId")
@@ -36,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().hide();
         //l=findViewById(androidx.constraintlayout.widget.R.id.constraint);
         btningresar=findViewById(R.id.btnIngreso);
+        btnRegistro=findViewById(R.id.txvRegistro);
         bienvenido=findViewById(R.id.txvBienvenido);
         visibility=findViewById(R.id.btnhide);
         edEmail=findViewById(R.id.edtEmail);
@@ -43,17 +47,26 @@ public class MainActivity extends AppCompatActivity {
         ConstraintLayout constra=(ConstraintLayout) findViewById(R.id.constraintLayout);
         ConstraintLayout constralogin=(ConstraintLayout) findViewById(R.id.constraintlogin);
         AnimationDrawable animationDrawable=(AnimationDrawable) constra.getBackground();
-
+        user=new DBuser(this);
+        btnRegistro.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(v.getContext(),RegisterActivity.class);
+                startActivity(intent);
+            }
+        });
         btningresar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String Email,Password;
                 Email=edEmail.getText().toString();
                 Password=edPassword.getText().toString();
+                usuario u=new usuario(null,Email,Password,null);
+
                 if(i){
                     bienvenido.setVisibility(v.INVISIBLE);
                     animationDrawable.setOneShot(true);
-                    animationDrawable.setEnterFadeDuration(500);
+                    animationDrawable.setEnterFadeDuration(1000);
                     animationDrawable.start();
                     try {
                         Thread.sleep(1000);
@@ -64,8 +77,19 @@ public class MainActivity extends AppCompatActivity {
                     i=false;
                 }else{
                     if(!Email.isEmpty() && !Password.isEmpty()){
-                        Intent intent=new Intent(v.getContext(), dashboardActivity.class);
-                        startActivity(intent);
+                        boolean respuesta=user.verificarusuarioyContra(u.getCorreo(),u.getPassword());
+                        if(true){
+                            Intent intent=new Intent(v.getContext(), dashboardActivity.class);
+                            intent.putExtra("correo",u.getCorreo());
+                            startActivity(intent);
+                        }else{
+                            Toast.makeText(MainActivity.this, "no existe esa cuenta",
+                                    Toast.LENGTH_SHORT).show();
+                        }
+
+                    }else{
+                        Toast.makeText(MainActivity.this, "Ingrese el email u contraseña faltante",
+                                Toast.LENGTH_SHORT).show();
                     }
                 }
 

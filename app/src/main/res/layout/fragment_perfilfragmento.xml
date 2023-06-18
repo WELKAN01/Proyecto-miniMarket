@@ -1,14 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Perfilfragmento">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="perfil fragmento" />
+        android:layout_height="match_parent">
 
+        <TextView
+            android:id="@+id/txvNombre"
+            android:layout_width="125dp"
+            android:layout_height="33dp"
+            android:layout_marginStart="224dp"
+            android:layout_marginLeft="224dp"
+            android:layout_marginTop="132dp"
+            android:gravity="center"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/txvCorreo"
+            android:layout_width="125dp"
+            android:layout_height="33dp"
+            android:layout_marginStart="224dp"
+            android:layout_marginLeft="224dp"
+            android:layout_marginTop="152dp"
+            android:gravity="center"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txvNombre" />
+
+        <TextView
+            android:id="@+id/txvEdad"
+            android:layout_width="125dp"
+            android:layout_height="33dp"
+            android:layout_marginStart="224dp"
+            android:layout_marginLeft="224dp"
+            android:layout_marginTop="172dp"
+            android:gravity="center"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txvCorreo" />
+
+        <TextView
+            android:id="@+id/textView9"
+            android:layout_width="83dp"
+            android:layout_height="33dp"
+            android:layout_marginStart="70dp"
+            android:layout_marginLeft="70dp"
+            android:layout_marginTop="132dp"
+            android:gravity="center"
+            android:text="Nombre"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView10"
+            android:layout_width="83dp"
+            android:layout_height="33dp"
+            android:layout_marginStart="70dp"
+            android:layout_marginLeft="70dp"
+            android:layout_marginTop="152dp"
+            android:gravity="center"
+            android:text="Correo"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView9" />
+
+        <TextView
+            android:id="@+id/textView11"
+            android:layout_width="83dp"
+            android:layout_height="33dp"
+            android:layout_marginStart="70dp"
+            android:layout_marginLeft="70dp"
+            android:layout_marginTop="172dp"
+            android:gravity="center"
+            android:text="Edad"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView10" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

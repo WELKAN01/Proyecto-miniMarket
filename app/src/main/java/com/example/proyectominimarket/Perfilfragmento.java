@@ -7,11 +7,18 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-public class Perfilfragmento extends Fragment {
+import android.widget.Button;
+import android.widget.TextView;
 
+public class Perfilfragmento extends Fragment {
+    TextView nombre,fechanacimiento,correo;
+    View v;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        nombre=v.findViewById(R.id.txvNombre);
+        fechanacimiento=v.findViewById(R.id.txvCorreo);
+        correo=v.findViewById(R.id.txvCorreo);
     }
 
     @Override

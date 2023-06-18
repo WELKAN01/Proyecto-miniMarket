@@ -173,7 +173,7 @@
             android:fontFamily="@font/abeezee"
             android:hint="Ingresa tu contraseña"
             android:inputType="textPassword"
-            android:textColorHighlight="#FFFFFF"
+            android:textColor="#FFFFFF"
             android:textColorHint="#FFFFFF"
             android:textStyle="italic"
             android:visibility="visible"
@@ -214,7 +214,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/textView4"
+            android:id="@+id/txvRegistro"
             android:layout_width="76dp"
             android:layout_height="23dp"
             android:layout_marginTop="640dp"

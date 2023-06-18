@@ -4,6 +4,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -26,6 +28,7 @@ public class dashboardActivity extends AppCompatActivity {
     Map<Integer,Fragment>fragmentMap;
     Map<Integer,String>TittleMap;
     Stack<Integer> fragmentStack=new Stack<>();
+    int Content=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,7 +70,7 @@ public class dashboardActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        MenuItem items;
+        DialogInterface dialogInterface = null;
         if(!fragmentStack.empty()){
             fragmentStack.pop();
         }
@@ -80,8 +83,6 @@ public class dashboardActivity extends AppCompatActivity {
         }else{
             titulo.setText(TittleMap.get(R.id.home));
             navigation.getMenu().findItem(R.id.home).setChecked(true);
-            Toast.makeText(this, "presiona 2 veces para salir", Toast.LENGTH_SHORT).show();
         }
-
     }
 }

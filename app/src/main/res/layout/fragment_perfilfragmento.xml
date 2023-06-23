@@ -12,7 +12,7 @@
 
         <TextView
             android:id="@+id/txvNombreperfil"
-            android:layout_width="180dp"
+            android:layout_width="220dp"
             android:layout_height="33dp"
             android:layout_marginStart="164dp"
             android:layout_marginLeft="164dp"
@@ -24,7 +24,7 @@
 
         <TextView
             android:id="@+id/txvCorreoperfil"
-            android:layout_width="180dp"
+            android:layout_width="220dp"
             android:layout_height="38dp"
             android:layout_marginStart="164dp"
             android:layout_marginLeft="164dp"
@@ -36,7 +36,7 @@
 
         <TextView
             android:id="@+id/txvEdadperfil"
-            android:layout_width="180dp"
+            android:layout_width="220dp"
             android:layout_height="38dp"
             android:layout_marginStart="164dp"
             android:layout_marginLeft="164dp"
@@ -50,8 +50,8 @@
             android:id="@+id/textView9"
             android:layout_width="83dp"
             android:layout_height="33dp"
-            android:layout_marginStart="70dp"
-            android:layout_marginLeft="70dp"
+            android:layout_marginStart="55dp"
+            android:layout_marginLeft="55dp"
             android:layout_marginTop="132dp"
             android:gravity="center"
             android:text="Nombre"
@@ -63,8 +63,8 @@
             android:id="@+id/textView10"
             android:layout_width="83dp"
             android:layout_height="38dp"
-            android:layout_marginStart="70dp"
-            android:layout_marginLeft="70dp"
+            android:layout_marginStart="55dp"
+            android:layout_marginLeft="55dp"
             android:layout_marginTop="152dp"
             android:gravity="center"
             android:text="Correo"
@@ -76,8 +76,8 @@
             android:id="@+id/textView11"
             android:layout_width="83dp"
             android:layout_height="38dp"
-            android:layout_marginStart="68dp"
-            android:layout_marginLeft="68dp"
+            android:layout_marginStart="55dp"
+            android:layout_marginLeft="55dp"
             android:layout_marginTop="172dp"
             android:gravity="center"
             android:text="Edad"

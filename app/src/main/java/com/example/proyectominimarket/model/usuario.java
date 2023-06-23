@@ -1,6 +1,4 @@
-package com.example.proyectominimarket;
-
-import java.util.Date;
+package com.example.proyectominimarket.model;
 
 public class usuario {
     private int id;
@@ -56,4 +54,5 @@ public class usuario {
     public void setNacimiento(String nacimiento) {
         this.nacimiento = nacimiento;
     }
+
 }

@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.proyectominimarket.Db.DBuser;
+import com.example.proyectominimarket.model.usuario;
 
 import java.time.LocalDate;
 import java.time.Period;

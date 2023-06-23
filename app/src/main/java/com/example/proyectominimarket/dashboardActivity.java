@@ -6,13 +6,16 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.example.proyectominimarket.Db.DBuser;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
@@ -22,9 +25,11 @@ import java.util.Map;
 import java.util.Stack;
 
 public class dashboardActivity extends AppCompatActivity {
+    DBuser user;
     FragmentTransaction fragmentTransaction;
     BottomNavigationView navigation;
     TextView titulo;
+    Map<Integer,String> buttonMap;
     Map<Integer,Fragment>fragmentMap;
     Map<Integer,String>TittleMap;
     Stack<Integer> fragmentStack=new Stack<>();
@@ -36,8 +41,14 @@ public class dashboardActivity extends AppCompatActivity {
         getSupportActionBar().hide();
         titulo=(TextView) findViewById(R.id.txvTitulo);
         navigation=findViewById(R.id.navigationBottom);
+        buttonMap=new HashMap<>();
         fragmentMap=new HashMap<>();
         TittleMap=new HashMap<>();
+        buttonMap.put(R.id.btnBebidas,"bebidas");
+        buttonMap.put(R.id.btnFrutas,"frutas");
+        buttonMap.put(R.id.btnVegetales,"vegetales");
+        buttonMap.put(R.id.btnAlmacen,"almacen");
+        buttonMap.put(R.id.btnDomesticos,"domesticos");
         fragmentMap.put(R.id.home,new Homefragmento());
         fragmentMap.put(R.id.cart,new Cartfragmento());
         fragmentMap.put(R.id.search,new Searchfragmento());
@@ -46,7 +57,7 @@ public class dashboardActivity extends AppCompatActivity {
         TittleMap.put(R.id.cart,"Carrito");
         TittleMap.put(R.id.search,"Busqueda");
         TittleMap.put(R.id.profile,"Perfil");
-
+        user=new DBuser(this);
         navigation.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -83,6 +94,15 @@ public class dashboardActivity extends AppCompatActivity {
         }else{
             titulo.setText(TittleMap.get(R.id.home));
             navigation.getMenu().findItem(R.id.home).setChecked(true);
+        }
+    }
+
+    public void verproductos(View view){
+        String button=buttonMap.get(view.getId());
+        if(button!=null){
+            Intent viewproducto=new Intent(this,ProductActivity.class);
+            viewproducto.putExtra("tipo",button);
+            startActivity(viewproducto);
         }
     }
 }

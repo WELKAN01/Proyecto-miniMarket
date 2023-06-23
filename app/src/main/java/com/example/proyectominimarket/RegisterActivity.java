@@ -61,11 +61,10 @@ public class RegisterActivity extends AppCompatActivity {
         if(passworData.trim().equalsIgnoreCase(confirmardata.trim())){
             boolean respuesta=dBuser.insertarDatos(nombreData,correoData,date2,passworData);
             if(respuesta){
-
+                Toast.makeText(this, "Felicidades por registrarte", Toast.LENGTH_LONG).
+                        show();
+                onBackPressed();
             }
-            Toast.makeText(this, "Felicidades por registrarte", Toast.LENGTH_LONG).
-                    show();
-            onBackPressed();
         }else{
             Toast.makeText(this, "no hay coincidencia en las contraseñas", Toast.LENGTH_LONG).
                     show();

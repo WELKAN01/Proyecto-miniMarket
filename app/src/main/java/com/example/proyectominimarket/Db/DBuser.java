@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
+import com.example.proyectominimarket.model.producto;
 import com.example.proyectominimarket.model.usuario;
 
 import java.util.ArrayList;
@@ -97,8 +98,6 @@ public class DBuser extends SQLiteOpenHelper {
     //funcion de insertacion de productos
     public void insertarproductos(SQLiteDatabase db){
         List<ContentValues> listproducto=new ArrayList<>();
-
-
         ContentValues cv1=new ContentValues();
         cv1.put("NOMBRE","coca cola 550ml");
         cv1.put("PRECIO",3.50);
@@ -150,5 +149,22 @@ public class DBuser extends SQLiteOpenHelper {
         for (ContentValues values:listproducto){
             db.insert(Tablaproducto.getTABLANAME(),null,values);
         }
+    }
+
+    public List<producto> obtenerproducto(String categoria){
+        SQLiteDatabase sqLiteDatabase=this.getWritableDatabase();
+        List<producto> prod=new ArrayList<>();
+        Cursor cursor=sqLiteDatabase.rawQuery("SELECT NOMBRE,PRECIO,STOCK,CATEGORIA FROM "+
+                        Tablaproducto.getTABLANAME()+
+                        " WHERE CATEGORIA=?"
+                ,new String[]{categoria});
+        while (cursor.moveToNext()){
+            String nombre=cursor.getString(cursor.getColumnIndexOrThrow("NOMBRE"));
+            Double precio=cursor.getDouble(cursor.getColumnIndexOrThrow("PRECIO"));
+            int stock=cursor.getInt(cursor.getColumnIndexOrThrow("STOCK"));
+            String Categoria=cursor.getString(cursor.getColumnIndexOrThrow("CATEGORIA"));
+            prod.add(new producto(nombre,precio,stock,categoria));
+        }
+        return prod;
     }
 }

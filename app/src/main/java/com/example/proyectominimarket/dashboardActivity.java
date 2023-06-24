@@ -81,7 +81,6 @@ public class dashboardActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        DialogInterface dialogInterface = null;
         if(!fragmentStack.empty()){
             fragmentStack.pop();
         }

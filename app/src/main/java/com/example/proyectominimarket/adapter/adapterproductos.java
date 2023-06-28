@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -28,8 +29,9 @@ public class adapterproductos extends RecyclerView.Adapter<adapterproductos.View
     }
 
     public class ViewHolderDatos extends RecyclerView.ViewHolder {
-        TextView nombreview,precioview,categoriaview;
-        Button Agregar;
+        TextView nombreview,precioview;
+        EditText cantidad;
+        Button Agregar,incrementar,reducir;
 
         ImageView imagenpro;
 
@@ -38,13 +40,13 @@ public class adapterproductos extends RecyclerView.Adapter<adapterproductos.View
             imagenpro=itemView.findViewById(R.id.imageContentproduct);
             nombreview=itemView.findViewById(R.id.txvNombrelist);
             precioview=itemView.findViewById(R.id.txvPreciolist);
-            categoriaview=itemView.findViewById(R.id.txvCategoriaList);
             Agregar=itemView.findViewById(R.id.btnagregar);
+            incrementar=itemView.findViewById(R.id.btnincrementar);
+            reducir=itemView.findViewById(R.id.btnreducir);
+            cantidad=itemView.findViewById(R.id.edtcantidad);
+
         }
     }
-
-
-
     @NonNull
     @Override
     public adapterproductos.ViewHolderDatos onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -55,6 +57,7 @@ public class adapterproductos extends RecyclerView.Adapter<adapterproductos.View
     @SuppressLint("RecyclerView")
     @Override
     public void onBindViewHolder(@NonNull adapterproductos.ViewHolderDatos holder,int position) {
+        //AGREGAREMOS LAS IMAGENES DEPENDIENDO DE CADA PRODUCTO
         int resourceid=holder.itemView.
                 getContext().
                 getResources().
@@ -63,20 +66,40 @@ public class adapterproductos extends RecyclerView.Adapter<adapterproductos.View
                         "drawable",
                         holder.itemView.getContext().getPackageName()
                 );
-
         if(resourceid!=0){
             Drawable drawable=holder.itemView.getContext().getResources().getDrawable(resourceid);
             holder.imagenpro.setImageDrawable(drawable);
         }else{
             holder.imagenpro.setImageResource(R.drawable.baseline_visibility_24);
         }
+        //nombre del producto como su precio y categoria
         holder.nombreview.setText(productos.get(position).getNombre());
-        holder.precioview.setText(productos.get(position).getPrecio().toString());
-        holder.categoriaview.setText(productos.get(position).getCategoria());
+        holder.precioview.setText(productos.get(position).getPrecio().toString()+"S/.");
+        //LOGICA DE INCREMENTACION Y REDUCCION DE CANTIDAD DE PRODUCTO QUE DESEE COMPRAR.
+        holder.incrementar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int cantidadvalor=Integer.parseInt(holder.cantidad.getText().toString());
+                cantidadvalor++;
+                holder.cantidad.setText(String.valueOf(cantidadvalor));
+            }
+        });
+        holder.reducir.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int cantidadvalor=Integer.parseInt(holder.cantidad.getText().toString());
+                cantidadvalor--;
+                holder.cantidad.setText(String.valueOf(cantidadvalor));
+            }
+        });
+
         holder.Agregar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                String resultado=productos.get(position).getNombre()+" -- "+
+                        productos.get(position).getPrecio().toString().replace("S/.","")+" -- "+
+                        holder.cantidad.getText().toString();
+                Toast.makeText(v.getContext(), resultado, Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -86,7 +109,4 @@ public class adapterproductos extends RecyclerView.Adapter<adapterproductos.View
         return productos.size();
     }
 
-    public int getResourceName(Context context, String name){
-        return context.getResources().getIdentifier(name,"drawable",context.getPackageName());
-    }
 }

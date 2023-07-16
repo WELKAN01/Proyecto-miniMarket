@@ -3,7 +3,7 @@ package com.example.proyectominimarket.Db;
 public class tablaproducto {
     private static String TABLANAME="producto";
 
-    public String getTABLANAME() {
+    public static final String getTABLANAME() {
         return TABLANAME;
     }
     private static final String CREATE="CREATE TABLE "+TABLANAME+"("+

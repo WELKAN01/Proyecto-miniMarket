@@ -7,6 +7,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -33,6 +34,10 @@ public class dashboardActivity extends AppCompatActivity {
     Map<Integer,Fragment>fragmentMap;
     Map<Integer,String>TittleMap;
     Stack<Integer> fragmentStack=new Stack<>();
+    private static final String SHARED_PREF="myaccount";
+    private static final String CORREO_LOG="Correo";
+    private static final String PASSWORD_LOG="Pass";
+    SharedPreferences sharedPreferences;
     int Content=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +63,10 @@ public class dashboardActivity extends AppCompatActivity {
         TittleMap.put(R.id.search,"Busqueda");
         TittleMap.put(R.id.profile,"Perfil");
         user=new DBuser(this);
+        sharedPreferences=getSharedPreferences(SHARED_PREF,MODE_PRIVATE);
+        String correo=sharedPreferences.getString(CORREO_LOG,null);
+        String Password=sharedPreferences.getString(PASSWORD_LOG,null);
+        Toast.makeText(this, "bienvenido "+correo, Toast.LENGTH_SHORT).show();
         navigation.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -80,7 +89,6 @@ public class dashboardActivity extends AppCompatActivity {
     //}
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
         if(!fragmentStack.empty()){
             fragmentStack.pop();
         }
@@ -90,9 +98,21 @@ public class dashboardActivity extends AppCompatActivity {
             navigation.getMenu().findItem(name).setChecked(true);
             titulo.setText(TittleMap.get(name));
             Toast.makeText(this, ""+fragmentStack.size(), Toast.LENGTH_SHORT).show();
+            super.onBackPressed();
         }else{
-            titulo.setText(TittleMap.get(R.id.home));
             navigation.getMenu().findItem(R.id.home).setChecked(true);
+            titulo.setText(TittleMap.get(R.id.home));
+            fragmentTransaction=getSupportFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.fragmentContainerView,new Homefragmento()).commit();
+            Content++;
+            Toast.makeText(this, "Presione una vez mas para salir", Toast.LENGTH_SHORT).
+                    show();
+            if(Content==2){
+                SharedPreferences.Editor editor=sharedPreferences.edit();
+                editor.clear();
+                editor.commit();
+                finish();
+            }
         }
     }
 

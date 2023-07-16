@@ -1,5 +1,7 @@
 package com.example.proyectominimarket;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 
@@ -23,7 +25,10 @@ import java.time.format.DateTimeFormatter;
 
 public class Perfilfragmento extends Fragment {
     TextView nombre,fechanacimiento,correo;
-
+    private static final String SHARED_PREF="myaccount";
+    private static final String CORREO_LOG="Correo";
+    private static final String PASSWORD_LOG="Pass";
+    SharedPreferences sharedPreferences;
     private DBuser user;
     usuario u;
     public Perfilfragmento() {
@@ -48,14 +53,16 @@ public class Perfilfragmento extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        sharedPreferences=view.getContext().getSharedPreferences(SHARED_PREF, Context.MODE_PRIVATE);
+        String correosh=sharedPreferences.getString(CORREO_LOG,null);
+        String Passwordsh=sharedPreferences.getString(PASSWORD_LOG,null);
 
-        String item=getActivity().getIntent().getExtras().getString("correo");
-        System.out.println(item);
+        //String item=getActivity().getIntent().getExtras().getString("correo");
         nombre=view.findViewById(R.id.txvNombreperfil);
         fechanacimiento=view.findViewById(R.id.txvEdadperfil);
         correo=view.findViewById(R.id.txvCorreoperfil);
         user=new DBuser(getContext());
-        usuario date= user.verificarusuario(item);
+        usuario date= user.verificarusuario(correosh);
         LocalDate fecha;
         if(date!=null){
             DateTimeFormatter sd= DateTimeFormatter.ofPattern("MM-dd-yyyy");

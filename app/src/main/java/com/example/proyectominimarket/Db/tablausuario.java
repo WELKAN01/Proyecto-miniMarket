@@ -3,7 +3,8 @@ package com.example.proyectominimarket.Db;
 public class tablausuario {
     private static String TABLANAME="usuario";
 
-    public String getTABLANAME() {
+
+    public static final String getTABLANAME() {
         return TABLANAME;
     }
 

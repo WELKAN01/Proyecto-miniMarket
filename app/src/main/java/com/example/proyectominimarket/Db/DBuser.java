@@ -3,14 +3,18 @@ package com.example.proyectominimarket.Db;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.CursorIndexOutOfBoundsException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
+import com.example.proyectominimarket.model.car;
 import com.example.proyectominimarket.model.producto;
 import com.example.proyectominimarket.model.usuario;
 
+import java.lang.reflect.Array;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,6 +33,7 @@ public class DBuser extends SQLiteOpenHelper {
 
     private tablaproducto Tablaproducto=new tablaproducto();
     private tablausuario Tablausuario=new tablausuario();
+    private tablacarrito Tablacarrito=new tablacarrito();
     public DBuser(@Nullable Context context) {
         super(context, DATABASE, null, 1);
         SQLiteDatabase db=this.getWritableDatabase();
@@ -40,15 +45,17 @@ public class DBuser extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(Tablausuario.creartablausuario());
         db.execSQL(Tablaproducto.creartablaproducto());
+        db.execSQL(Tablacarrito.crearCarrito());
         insertarproductos(db);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL(Tablausuario.borrartablausuario());
-        db.execSQL(Tablaproducto.Eliminartablaproducto());
-        onCreate(db);
 
+            db.execSQL(Tablausuario.borrartablausuario());
+            db.execSQL(Tablaproducto.Eliminartablaproducto());
+            db.execSQL(Tablacarrito.eliminarCarrito());
+            onCreate(db);
     }
 
     //registro de cuenta de una persona
@@ -82,6 +89,8 @@ public class DBuser extends SQLiteOpenHelper {
         cursor.close();
         return user;
     }
+
+
 
     //verificar si usuario y contraseña existe
     public boolean verificarusuarioyContra(String correo,String password){
@@ -146,11 +155,25 @@ public class DBuser extends SQLiteOpenHelper {
         cv8.put("STOCK",10);
         cv8.put("CATEGORIA","almacen");
         listproducto.add(cv8);
+        ContentValues cv9=new ContentValues();
+        cv9.put("NOMBRE","gillete 2 hojas");
+        cv9.put("PRECIO",1.00);
+        cv9.put("STOCK",25);
+        cv9.put("CATEGORIA","domesticos");
+        listproducto.add(cv9);
+        ContentValues cv10=new ContentValues();
+        cv10.put("NOMBRE","fosforo caja pequeña");
+        cv10.put("PRECIO",7.00);
+        cv10.put("STOCK",10);
+        cv10.put("CATEGORIA","domesticos");
+        listproducto.add(cv10);
         for (ContentValues values:listproducto){
             db.insert(Tablaproducto.getTABLANAME(),null,values);
         }
     }
 
+    //funcion para obtener los productos mediante busqueda, en ello ordernarlo y devolverlos en datos
+    //con estructura List mediante la clase producto
     public List<producto> obtenerproducto(String categoria){
         SQLiteDatabase sqLiteDatabase=this.getWritableDatabase();
         List<producto> prod=new ArrayList<>();
@@ -163,8 +186,62 @@ public class DBuser extends SQLiteOpenHelper {
             Double precio=cursor.getDouble(cursor.getColumnIndexOrThrow("PRECIO"));
             int stock=cursor.getInt(cursor.getColumnIndexOrThrow("STOCK"));
             String Categoria=cursor.getString(cursor.getColumnIndexOrThrow("CATEGORIA"));
-            prod.add(new producto(nombre,precio,stock,categoria));
+            prod.add(new producto(nombre,precio,stock,Categoria));
         }
         return prod;
+    }
+
+
+    //obtener los productos del carrito mediante la cuenta ingresada
+    public Cursor obtenerproductosdelcarrito(String nom){
+        SQLiteDatabase db=this.getWritableDatabase();
+        Cursor res=db.rawQuery("SELECT * FROM "+Tablacarrito.getTABLA_NAME()+" WHERE Correo_usuario LIKE ?",
+                new String[]{nom});
+        return  res;
+    }
+    //insertar los datos a la bd temporal, en ello si no existe lo insertamos.
+    //en caso no se va actualizar a la cantidad mas que se le agrega.
+    public boolean insertarCarrito(car carrito,String nombre) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("nombre", carrito.getNombre());
+        contentValues.put("cantidad", carrito.getCantidad());
+        contentValues.put("totalpagar", carrito.getTotalpago());
+        contentValues.put("Correo_usuario", nombre);
+        Cursor aux = obtenerproductosdelcarrito(nombre);
+        int res = 0;
+        if (aux.getCount() > 0) {
+            while (aux.moveToNext()) {
+                if (aux.getString(1).equalsIgnoreCase(carrito.getNombre())) {
+                    int cantidad_actual=aux.getInt(2)+carrito.getCantidad();
+                    res=actualizarcarrito(carrito.getNombre(), cantidad_actual, carrito.getPrecio());
+                    break;
+                }else{
+                    res = (int) db.insert(Tablacarrito.getTABLA_NAME(), null, contentValues);
+                }
+            }
+        } else {
+            res = (int) db.insert(Tablacarrito.getTABLA_NAME(), null, contentValues);
+        }
+        return res == -1 ? false : true;
+    }
+
+    //funcion para actualizar carrito
+    private int actualizarcarrito(String nombreprod,int cantidadActual,double precio) {
+        SQLiteDatabase db=this.getWritableDatabase();
+        ContentValues cv=new ContentValues();
+        DecimalFormat format=new DecimalFormat("#.##");
+        precio=Double.parseDouble(format.format(precio));
+        cv.put("cantidad",cantidadActual);
+        cv.put("totalpagar",cantidadActual*precio);
+        int res=db.update(Tablacarrito.getTABLA_NAME(),cv,"nombre = ?",
+                new String[]{nombreprod});
+        return res;
+    }
+
+    private boolean eliminarcarrito(String id){
+        SQLiteDatabase db=this.getWritableDatabase();
+        int res=db.delete(Tablacarrito.getTABLA_NAME(),"idcarro = ?",new String[]{id});
+        return res==-1?false:true;
     }
 }

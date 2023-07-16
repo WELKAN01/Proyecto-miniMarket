@@ -7,24 +7,23 @@
     tools:context=".Cartfragmento">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layoutvacio"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:animateLayoutChanges="false">
 
         <TextView
             android:id="@+id/textView4"
             android:layout_width="357dp"
             android:layout_height="198dp"
-            android:layout_marginStart="176dp"
-            android:layout_marginLeft="176dp"
-            android:layout_marginTop="148dp"
-            android:layout_marginEnd="177dp"
-            android:layout_marginRight="177dp"
+            android:layout_marginStart="54dp"
+            android:layout_marginTop="200dp"
+            android:layout_marginEnd="54dp"
             android:fontFamily="@font/abeezee"
             android:gravity="center"
             android:text="ESTA VACIO EL CARRITO"
             android:textSize="60sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -32,7 +31,7 @@
             android:id="@+id/imageView2"
             android:layout_width="103dp"
             android:layout_height="68dp"
-            android:layout_marginTop="328dp"
+            android:layout_marginTop="368dp"
             android:src="@drawable/baseline_mood_bad_24"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -40,17 +39,86 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layoutList"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ListView
-            android:layout_width="411dp"
-            android:layout_height="606dp"
-            android:layout_marginTop="54dp"
-            android:layout_marginBottom="71dp"
-            app:layout_constraintBottom_toBottomOf="parent"
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            tools:ignore="SpeakableTextPresentCheck">
+
+            <LinearLayout
+                android:id="@+id/Listlinear"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="8dp">
+
+                    <ImageView
+                        android:id="@+id/ImgProduct"
+                        android:layout_width="74dp"
+                        android:layout_height="80dp"
+                        android:layout_marginStart="28dp"
+                        android:layout_marginTop="8dp"
+                        android:src="@drawable/baseline_visibility_24"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tvNombre"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="32dp"
+                        android:layout_marginEnd="16dp"
+                        app:layout_constraintEnd_toStartOf="@+id/tvPrecio"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <Button
+                        android:id="@+id/btnborrar"
+                        android:layout_width="58dp"
+                        android:layout_height="66dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="32dp"
+                        app:backgroundTint="#DFE81A1A"
+                        app:cornerRadius="33sp"
+                        app:icon="@drawable/baseline_delete_24"
+                        app:iconGravity="textTop"
+                        app:iconPadding="0dp"
+                        app:iconTint="#000000"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:ignore="SpeakableTextPresentCheck" />
+
+                    <TextView
+                        android:id="@+id/tvPrecio"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="32dp"
+                        android:layout_marginEnd="32dp"
+                        app:layout_constraintEnd_toStartOf="@+id/btnborrar"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </LinearLayout>
+        </ScrollView>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/txvtotalpagar"
+        android:layout_width="145dp"
+        android:layout_height="31dp"
+        android:layout_marginStart="180dp"
+        android:layout_marginLeft="180dp"
+        android:layout_marginTop="550dp"
+        android:gravity="center"
+        android:textSize="24sp" />
+
 </FrameLayout>

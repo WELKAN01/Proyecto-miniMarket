@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -66,7 +67,14 @@ public class dashboardActivity extends AppCompatActivity {
         sharedPreferences=getSharedPreferences(SHARED_PREF,MODE_PRIVATE);
         String correo=sharedPreferences.getString(CORREO_LOG,null);
         String Password=sharedPreferences.getString(PASSWORD_LOG,null);
-        Toast.makeText(this, "bienvenido "+correo, Toast.LENGTH_SHORT).show();
+
+        Button back=findViewById(R.id.btndashboardback);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
         navigation.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -97,7 +105,6 @@ public class dashboardActivity extends AppCompatActivity {
             System.out.println(Arrays.asList(fragmentStack));
             navigation.getMenu().findItem(name).setChecked(true);
             titulo.setText(TittleMap.get(name));
-            Toast.makeText(this, ""+fragmentStack.size(), Toast.LENGTH_SHORT).show();
             super.onBackPressed();
         }else{
             navigation.getMenu().findItem(R.id.home).setChecked(true);
@@ -105,13 +112,16 @@ public class dashboardActivity extends AppCompatActivity {
             fragmentTransaction=getSupportFragmentManager().beginTransaction();
             fragmentTransaction.replace(R.id.fragmentContainerView,new Homefragmento()).commit();
             Content++;
-            Toast.makeText(this, "Presione una vez mas para salir", Toast.LENGTH_SHORT).
-                    show();
+            if(Content==1){
+                Toast.makeText(this, "Presione una vez mas para salir", Toast.LENGTH_SHORT).
+                        show();
+            }
             if(Content==2){
                 SharedPreferences.Editor editor=sharedPreferences.edit();
                 editor.clear();
                 editor.commit();
                 finish();
+                startActivity(new Intent(this,MainActivity.class));
             }
         }
     }

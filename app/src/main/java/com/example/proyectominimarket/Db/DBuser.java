@@ -188,6 +188,24 @@ public class DBuser extends SQLiteOpenHelper {
             String Categoria=cursor.getString(cursor.getColumnIndexOrThrow("CATEGORIA"));
             prod.add(new producto(nombre,precio,stock,Categoria));
         }
+
+        return prod;
+    }
+
+    public List<producto> obtenerproductototal(){
+        SQLiteDatabase sqLiteDatabase=this.getWritableDatabase();
+        List<producto> prod=new ArrayList<>();
+        Cursor cursor=sqLiteDatabase.rawQuery("SELECT NOMBRE,PRECIO,STOCK,CATEGORIA FROM "+
+                        Tablaproducto.getTABLANAME()
+                ,null);
+        while (cursor.moveToNext()){
+            String nombre=cursor.getString(cursor.getColumnIndexOrThrow("NOMBRE"));
+            Double precio=cursor.getDouble(cursor.getColumnIndexOrThrow("PRECIO"));
+            int stock=cursor.getInt(cursor.getColumnIndexOrThrow("STOCK"));
+            String Categoria=cursor.getString(cursor.getColumnIndexOrThrow("CATEGORIA"));
+            prod.add(new producto(nombre,precio,stock,Categoria));
+        }
+
         return prod;
     }
 
@@ -199,6 +217,15 @@ public class DBuser extends SQLiteOpenHelper {
                 new String[]{nom});
         return  res;
     }
+
+    public Cursor obtenerproductosdelcarritoanalisis(String nom,String prod){
+        SQLiteDatabase db=this.getWritableDatabase();
+        Cursor res=db.rawQuery("SELECT * FROM "+Tablacarrito.getTABLA_NAME()+
+                        " WHERE Correo_usuario LIKE ? AND nombre LIKE ?",
+                new String[]{nom,prod});
+
+        return  res;
+    }
     //insertar los datos a la bd temporal, en ello si no existe lo insertamos.
     //en caso no se va actualizar a la cantidad mas que se le agrega.
     public boolean insertarCarrito(car carrito,String nombre) {
@@ -208,16 +235,14 @@ public class DBuser extends SQLiteOpenHelper {
         contentValues.put("cantidad", carrito.getCantidad());
         contentValues.put("totalpagar", carrito.getTotalpago());
         contentValues.put("Correo_usuario", nombre);
-        Cursor aux = obtenerproductosdelcarrito(nombre);
+        Cursor aux = obtenerproductosdelcarritoanalisis(nombre,carrito.getNombre());
         int res = 0;
-        if (aux.getCount() > 0) {
+        if (aux!=null && aux.getCount() > 0) {
             while (aux.moveToNext()) {
                 if (aux.getString(1).equalsIgnoreCase(carrito.getNombre())) {
                     int cantidad_actual=aux.getInt(2)+carrito.getCantidad();
                     res=actualizarcarrito(carrito.getNombre(), cantidad_actual, carrito.getPrecio());
                     break;
-                }else{
-                    res = (int) db.insert(Tablacarrito.getTABLA_NAME(), null, contentValues);
                 }
             }
         } else {
@@ -239,7 +264,7 @@ public class DBuser extends SQLiteOpenHelper {
         return res;
     }
 
-    private boolean eliminarcarrito(String id){
+    public boolean eliminarcarrito(String id){
         SQLiteDatabase db=this.getWritableDatabase();
         int res=db.delete(Tablacarrito.getTABLA_NAME(),"idcarro = ?",new String[]{id});
         return res==-1?false:true;

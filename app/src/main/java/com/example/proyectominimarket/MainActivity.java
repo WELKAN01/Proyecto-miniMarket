@@ -54,7 +54,9 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences.Editor editor=sharedPreferences.edit();
         user=new DBuser(this);
         if(sharedPreferences.contains(CORREO_LOG)){
+            String correo=sharedPreferences.getString(CORREO_LOG,null);
             Intent intent=new Intent(MainActivity.this,dashboardActivity.class);
+            Toast.makeText(MainActivity.this, "BIENVENIDO "+correo, Toast.LENGTH_SHORT).show();
             startActivity(intent);
         }else {
             btnRegistro.setOnClickListener(new View.OnClickListener() {
@@ -94,6 +96,7 @@ public class MainActivity extends AppCompatActivity {
                                 Intent intent = new Intent(MainActivity.this, dashboardActivity.class);
                                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
                                 startActivity(intent);
+                                Toast.makeText(MainActivity.this, "BIENVENIDO "+sharedPreferences.getString(CORREO_LOG,null), Toast.LENGTH_SHORT).show();
                             } else {
                                 Toast.makeText(MainActivity.this, "no existe esa cuenta",
                                         Toast.LENGTH_SHORT).show();

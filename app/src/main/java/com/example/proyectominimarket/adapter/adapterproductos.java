@@ -88,8 +88,8 @@ public class adapterproductos extends RecyclerView.Adapter<adapterproductos.View
         }
         //nombre del producto como su precio y categoria
 
-        holder.nombreview.setText(productos.get(position).getNombre() + resourceid);
-        holder.precioview.setText(productos.get(position).getPrecio().toString()+"S/.");
+        holder.nombreview.setText(productos.get(position).getNombre());
+        holder.precioview.setText(productos.get(position).getPrecio().toString()+" S/.");
 
         //LOGICA DE INCREMENTACION Y REDUCCION DE CANTIDAD DE PRODUCTO QUE DESEE COMPRAR.
         holder.incrementar.setOnClickListener(new View.OnClickListener() {
@@ -126,13 +126,14 @@ public class adapterproductos extends RecyclerView.Adapter<adapterproductos.View
                 carrito.setCantidad(cantidad);
                 carrito.setPrecio(precio);
                 carrito.setTotalpago(precio,cantidad);
+                System.out.println(carrito.getNombre()+" "+carrito.getCantidad());
                 boolean contenido=database.insertarCarrito(carrito,holder.correo);
                 if(contenido){
                     mensajes(v,"se pudo ingresar");
                 }else{
                     mensajes(v,"no se pudo ingresar");
                 }
-
+                holder.cantidad.setText("1");
                 //ingresarlo a la bd de carrito con relacion al usuario
 
             }

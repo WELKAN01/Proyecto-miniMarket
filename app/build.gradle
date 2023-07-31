@@ -3,11 +3,11 @@ plugins {
 }
 
 android {
-    namespace 'com.example.proyectominimarket'
+    namespace 'app.market.proyectominimarket'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.example.proyectominimarket"
+        applicationId "app.market.proyectominimarket"
         minSdk 19
         targetSdk 33
         versionCode 1

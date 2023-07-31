@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/backgroundanimation"
-    tools:context=".MainActivity">
+    tools:context="app.market.proyectominimarket.MainActivity">
 
     <TextView
         android:id="@+id/txvBienvenido"
@@ -204,28 +204,26 @@
             android:layout_width="194dp"
             android:layout_height="23dp"
             android:layout_marginStart="70dp"
-            android:layout_marginLeft="70dp"
-            android:layout_marginTop="640dp"
+            android:layout_marginBottom="60dp"
             android:gravity="center"
             android:letterSpacing="0.15"
             android:text="¿No tiene una cuenta?"
             android:textColor="#181725"
             android:textStyle="italic"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
             android:id="@+id/txvRegistro"
             android:layout_width="76dp"
             android:layout_height="23dp"
-            android:layout_marginTop="640dp"
             android:layout_marginEnd="70dp"
-            android:layout_marginRight="70dp"
+            android:layout_marginBottom="60dp"
             android:gravity="center"
             android:text="Registrate"
             android:textColor="#53B175"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Cartfragmento">
+    tools:context="app.market.proyectominimarket.Cartfragmento">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/layoutvacio"
@@ -41,7 +41,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/layoutList"
         android:layout_width="match_parent"
-        android:layout_height="500dp">
+        android:layout_height="460dp">
 
         <ScrollView
             android:layout_width="match_parent"
@@ -60,27 +60,28 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layoutplusmaterial"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
-        <Button
-            android:id="@+id/btncomprar"
-            android:layout_width="154dp"
-            android:layout_height="45dp"
-            android:layout_marginStart="28dp"
-            android:layout_marginBottom="84dp"
-            android:text="COMPRAR"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
             android:id="@+id/txvtotalpagar"
             android:layout_width="145dp"
             android:layout_height="31dp"
-            android:layout_marginStart="240dp"
-            android:layout_marginBottom="104dp"
+            android:layout_marginStart="236dp"
+            android:layout_marginBottom="24dp"
             android:gravity="center"
             android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/btncomprar"
+            android:layout_width="154dp"
+            android:layout_height="45dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginBottom="8dp"
+            android:text="COMPRAR"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
@@ -88,8 +89,8 @@
             android:id="@+id/btnplus"
             android:layout_width="154dp"
             android:layout_height="45dp"
-            android:layout_marginStart="28dp"
-            android:layout_marginBottom="2dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginBottom="4dp"
             android:text="COMPRAR MAS"
             app:layout_constraintBottom_toTopOf="@+id/btncomprar"
             app:layout_constraintStart_toStartOf="parent" />
